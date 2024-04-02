@@ -25,5 +25,8 @@ public class PeliculaServiceImpl implements PeliculaService {
     public Optional<Pelicula> getPeliculaById(Long id){
         return peliculaRep.findById(id);
     }
-    
+    @Override
+    public Pelicula createPelicula(Pelicula pelicula){
+        return peliculaRep.save(pelicula);
+    }
 }
