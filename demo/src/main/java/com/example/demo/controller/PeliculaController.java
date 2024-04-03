@@ -38,7 +38,11 @@ public class PeliculaController {
     public Pelicula createPeli(@RequestBody Pelicula pelicula) {
         return peliculaService.createPelicula(pelicula);
     }
-
+    @PutMapping("/{id}")
+    public Pelicula updatePeli(@PathVariable Long id, @RequestBody Pelicula pelicula) {
+        return peliculaService.updatePelicula(id, pelicula);
+    }
+ 
     
     
 }

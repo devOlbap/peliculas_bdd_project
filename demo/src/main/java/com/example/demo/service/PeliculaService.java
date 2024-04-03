@@ -11,5 +11,5 @@ public interface PeliculaService {
     Optional<Pelicula> getPeliculaById(Long id);
 
     Pelicula createPelicula(Pelicula pelicula);
-
+    Pelicula updatePelicula(Long id, Pelicula pelicula);
 }

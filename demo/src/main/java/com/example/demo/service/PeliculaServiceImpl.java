@@ -29,4 +29,14 @@ public class PeliculaServiceImpl implements PeliculaService {
     public Pelicula createPelicula(Pelicula pelicula){
         return peliculaRep.save(pelicula);
     }
+    @Override
+    public Pelicula updatePelicula(Long id, Pelicula pelicula){
+
+        if(peliculaRep.existsById(id)){
+            pelicula.setId(id);
+            return peliculaRep.save(pelicula);
+        }
+        return null;
+
+    }
 }
