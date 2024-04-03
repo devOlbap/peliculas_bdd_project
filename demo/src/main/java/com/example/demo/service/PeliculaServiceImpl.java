@@ -37,6 +37,9 @@ public class PeliculaServiceImpl implements PeliculaService {
             return peliculaRep.save(pelicula);
         }
         return null;
-
+    }
+    @Override
+    public void deletePelicula(Long id){
+        peliculaRep.deleteById(id);
     }
 }

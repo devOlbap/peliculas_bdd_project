@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 import com.example.demo.service.PeliculaService;
 import com.example.demo.model.Pelicula;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +46,14 @@ public class PeliculaController {
     public Pelicula updatePeli(@PathVariable Long id, @RequestBody Pelicula pelicula) {
         return peliculaService.updatePelicula(id, pelicula);
     }
- 
     
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> deletePeli(@PathVariable Long id) {
+        peliculaService.deletePelicula(id);
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", "Película eliminada exitosamente con ID: " + id);
+        return ResponseEntity.ok().body(response);
+    }
     
 }
