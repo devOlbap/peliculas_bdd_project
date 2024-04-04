@@ -39,7 +39,11 @@ public class PeliculaServiceImpl implements PeliculaService {
         return null;
     }
     @Override
-    public void deletePelicula(Long id){
-        peliculaRep.deleteById(id);
+    public Boolean deletePelicula(Long id){
+        if(peliculaRep.existsById(id)){
+            peliculaRep.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
