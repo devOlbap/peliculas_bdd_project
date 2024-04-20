@@ -42,40 +42,16 @@ public class PeliculaController {
     
      @PostMapping("/add")
     public ResponseEntity<?> createPeli(@RequestBody Pelicula pelicula) {
-        //Lista de errores en validaciones
-        List<String> errores = new ArrayList<>();
 
-        // obtener anio actual.
-        int anioActual = LocalDate.now().getYear();
+        //DEBEMOS MOVER estas validaciones para la clase Pelicula y limpiar en controlador... 
+        //HACER MAS NEGOCIO (manejo de info) EN SERVICIO O REPOSITORY(?)
 
-        // Validar titulo
-        if (pelicula.getTitulo().trim().length() > 100 || pelicula.getTitulo().trim().length() == 0) {
-            String msje = pelicula.getTitulo().trim().length() > 100 ? "El título de la película no puede tener más de 100 caracteres." : "Debe ingresar un titulo válido.";
-            errores.add(msje);
-        }
+        List<String> errores = new ArrayList();
 
-        // Validar anio
-        if(pelicula.getAnio()<1000 || pelicula.getAnio() > anioActual){
-            String msje = pelicula.getAnio() > anioActual ? "El año no debe ser mayor al año actual." : "Debe ingresar un año válido.";
-            errores.add(msje);         
-        }
-
-        // Validar director
-        if (pelicula.getDirector().trim().length() > 100 || pelicula.getDirector().trim().length() ==0) {
-            String msje = pelicula.getDirector().length() > 100 ? "El nombre del director no puede tener más de 100 caracteres." : "Debe ingresar un director válido.";
-            errores.add(msje);
-        }
-
-        //validar genero.
-        if (pelicula.getGenero().trim().length() > 50 || pelicula.getGenero().trim().length() ==0) {
-            String msje = pelicula.getGenero().length() > 50 ? "El género no puede tener más de 50 caracteres." : "Debe ingresar un género válido.";
-            errores.add(msje);
-        }
-
-        //validar sinopsis.
-        if (pelicula.getSinopsis().trim().length() > 255 || pelicula.getSinopsis().trim().length() ==0) {
-            String msje = pelicula.getSinopsis().length() > 255 ? "La sinópsis no puede tener más de 255 caracteres." : "Debe ingresar una sinópsis válida.";
-            errores.add(msje);
+        //EJEMPLO DE VALIDACIONES EN LA CLASE.
+        //DE HECHO ESTO PUEDE SER SOLO UNA FUNCION
+        if(pelicula.validarTitulo().trim().length() > 1){
+            errores.add(pelicula.validarTitulo());
         }
 
         // Si no hay errores, llamar al método del servicio para crear la película

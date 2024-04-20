@@ -91,4 +91,54 @@ public class Pelicula {
     public void setSinopsis(String sinopsis) {
         this.sinopsis = sinopsis;
     }
+
+
+    /** MOVEMOS LAS VALIDACIONES PARA LA CLASE Y ASI LIMPIAR EL CONTROLLER */
+    public String validarTitulo(){
+        // Validar titulo
+        if (this.getTitulo().trim().length() > 100 || this.getTitulo().trim().length() == 0) {
+            String msje = this.getTitulo().trim().length() > 100 ? "El título de la película no puede tener más de 100 caracteres." : "Debe ingresar un titulo válido.";
+            return msje;
+        }
+        return "";
+    }
+
+    
+
+
+
 }
+
+
+/*
+ * // obtener anio actual.
+        int anioActual = LocalDate.now().getYear();
+
+        
+
+        // Validar anio
+        if(pelicula.getAnio()<1000 || pelicula.getAnio() > anioActual){
+            String msje = pelicula.getAnio() > anioActual ? "El año no debe ser mayor al año actual." : "Debe ingresar un año válido.";
+            errores.add(msje);         
+        }
+
+        // Validar director
+        if (pelicula.getDirector().trim().length() > 100 || pelicula.getDirector().trim().length() ==0) {
+            String msje = pelicula.getDirector().length() > 100 ? "El nombre del director no puede tener más de 100 caracteres." : "Debe ingresar un director válido.";
+            errores.add(msje);
+        }
+
+        //validar genero.
+        if (pelicula.getGenero().trim().length() > 50 || pelicula.getGenero().trim().length() ==0) {
+            String msje = pelicula.getGenero().length() > 50 ? "El género no puede tener más de 50 caracteres." : "Debe ingresar un género válido.";
+            errores.add(msje);
+        }
+
+        //validar sinopsis.
+        if (pelicula.getSinopsis().trim().length() > 255 || pelicula.getSinopsis().trim().length() ==0) {
+            String msje = pelicula.getSinopsis().length() > 255 ? "La sinópsis no puede tener más de 255 caracteres." : "Debe ingresar una sinópsis válida.";
+            errores.add(msje);
+        }
+ * 
+ * 
+ */
